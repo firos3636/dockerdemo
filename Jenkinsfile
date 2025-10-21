@@ -24,7 +24,7 @@ pipeline {
                     sh 'docker rm nodejs-demo || true'
 
                     // Run new container
-                    sh 'docker run -d -p 3000:3000 --name nodejs-demo'
+                     sh 'docker run -d -p 3000:3000 --name nodejs-demo nodejs-demo'
                 }
             }
         }
