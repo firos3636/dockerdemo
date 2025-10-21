@@ -1,0 +1,32 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/<your-username>/<your-repo>.git'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    sh 'docker build -t nodejs-demo .'
+                }
+            }
+        }
+
+        stage('Run Docker Container') {
+            steps {
+                script {
+                    // Stop old container if running
+                    sh 'docker stop nodejs-demo || true'
+                    sh 'docker rm nodejs-demo || true'
+
+                    // Run new container
+                    sh 'docker run -d -p 3000:3000 --name nodejs-demo nodejs-demo'
+                }
+            }
+        }
+    }
+}
