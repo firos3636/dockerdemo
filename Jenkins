@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/<your-username>/<your-repo>.git'
+                git branch: 'main', url: 'https://github.com/firos3636/dockerdemo.git'
             }
         }
 
@@ -24,7 +24,7 @@ pipeline {
                     sh 'docker rm nodejs-demo || true'
 
                     // Run new container
-                    sh 'docker run -d -p 3000:3000 --name nodejs-demo nodejs-demo'
+                    sh 'docker run -d -p 3000:3000 --name nodejs-demo'
                 }
             }
         }
