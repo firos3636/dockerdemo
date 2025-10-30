@@ -18,6 +18,7 @@ pipeline {
                     sh 'docker build -t nodejs-demo .'
                 }
             }
+        } 
         
 
         stage('Run Docker Container') {
@@ -31,13 +32,15 @@ pipeline {
                      sh 'docker run -d -p 3000:3000 --name nodejs-demo nodejs-demo'
                 }
             }
-           
+        }
+        
             stage('Push Image to Docker Hub') {
     steps {
         sh '''
             echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin
             docker push firos3636/nodejs-demo:latest
         '''
-     }
-  }
+         }
+      }
+   }
 }    
