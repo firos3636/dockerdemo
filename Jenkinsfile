@@ -10,7 +10,7 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/firos3636/dockerdemo.git'
             }
         }
-    }   
+       
 
         stage('Build Docker Image') {
             steps {
@@ -18,7 +18,7 @@ pipeline {
                     sh 'docker build -t nodejs-demo .'
                 }
             }
-        }
+        
 
         stage('Run Docker Container') {
             steps {
@@ -31,7 +31,7 @@ pipeline {
                      sh 'docker run -d -p 3000:3000 --name nodejs-demo nodejs-demo'
                 }
             }
-        }   
+           
             stage('Push Image to Docker Hub') {
     steps {
         sh '''
