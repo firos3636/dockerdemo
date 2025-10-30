@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials')
-        DOCKER_IMAGE = "firos3636/nodejs-demo"
+        DOCKER_IMAGE = "firosop3636/nodejs-demo"
     }
 
     stages {
