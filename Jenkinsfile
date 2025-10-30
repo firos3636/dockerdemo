@@ -15,7 +15,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh 'docker build -t nodejs-demo .'
+                    sh 'docker build -t nodejs-demo:latest .'
                 }
             }
         } 
@@ -38,7 +38,7 @@ pipeline {
     steps {
         sh '''
             echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin
-            docker push firos3636/nodejs-demo
+            docker push nodejs-demo:latest
         '''
          }
       }
