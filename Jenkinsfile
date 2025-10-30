@@ -46,4 +46,16 @@ pipeline {
             }
         }
     }
-}    
+
+     stage('Deploy to Kubernetes') {
+            steps {
+                script {
+                    sh '''
+                        echo "Deploying application to Kubernetes..."
+                        kubectl apply -f deployment.yaml
+                        kubectl apply -f service.yaml
+                
+                }
+            }
+        }
+ }
