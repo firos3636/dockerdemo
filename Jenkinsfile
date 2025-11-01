@@ -50,8 +50,9 @@ pipeline {
      stage('Deploy to Kubernetes') {
             steps {
                 script {
-                    withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG_FILE')]) {
-                    sh '''
+                   withCredentials([string(credentialsId: 'kubeconfig', variable: 'KUBECONFIG_CONTENT')]) {
+                writeFile file: 'kubeconfig', text: "${KUBECONFIG_CONTENT}"
+                sh '''
                         echo "Deploying application to Kubernetes..."
                         kubectl apply -f deployment.yaml
                         kubectl apply -f service.yaml
